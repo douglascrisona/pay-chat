@@ -12,6 +12,10 @@ h4 {
   margin-top: -30px;
 }
 
+#log-in:hover {
+  color: rgb(65,105,225);
+}
+
 #logo {
   margin-top: 30px;
   margin-left: 150px;
