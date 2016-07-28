@@ -6,7 +6,6 @@ var url = 'mongodb://localhost:27017/users'
 
 
 users.post('/:name/:password/:email/:number', function(req, res) {
-  console.log(newUser)
   var newUser = {}
   newUser.name = req.params.name;
   newUser.password = req.params.password;
@@ -32,7 +31,10 @@ users.post('/:name/:password/:email/:number', function(req, res) {
   res.send();
 });
 
-users.get('/all', function(req, res) {
+users.get('/:name', function(req, res) {
+  var user = {};
+  user.name = req.params.name
+
   MongoClient.connect(url, function(err, db) {
     if(err) {
       console.log('Not Connected')
@@ -41,7 +43,7 @@ users.get('/all', function(req, res) {
     }
     var users = db.collection('users');
     users
-      .find({})
+      .find({name: user.name})
       .toArray(function(err, docs) {
         res.send(docs);
         db.close();
