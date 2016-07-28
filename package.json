@@ -1,0 +1,27 @@
+{
+  "name": "pay-chat",
+  "version": "1.0.0",
+  "description": "An invoicing program with live chat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/douglascrisona/pay-chat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/douglascrisona/pay-chat/issues"
+  },
+  "homepage": "https://github.com/douglascrisona/pay-chat#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "chai": "^3.5.0",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.4",
+    "pdfkit": "^0.7.2",
+    "request": "^2.74.0"
+  }
+}
