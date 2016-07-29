@@ -6,17 +6,47 @@ h4 {
   color: rgb(77, 77, 77);
 }
 
-#log-in {
+#sign-up {
   float: right;
   margin-right: 150px;
   margin-top: -30px;
 }
 
-#log-in:hover {
+#sign-up:hover {
+  color: rgb(65,105,225);
+}
+
+#sign-in {
+  float: right;
+  margin-top: -30px;
+  margin-right: 80px;
+}
+
+#sign-in:hover {
   color: rgb(65,105,225);
 }
 
 #logo {
   margin-top: 30px;
   margin-left: 150px;
+}
+
+#header {
+  margin-left: 25%;
+  margin-top: 55px;
+}
+
+#left {
+  width: 200px;
+  font-weight: bold;
+}
+
+#middle {
+  width: 200px;
+  font-weight: bold;
+}
+
+#right {
+  width: 200px;
+  font-weight: bold;
 }
