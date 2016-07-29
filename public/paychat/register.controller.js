@@ -11,7 +11,9 @@ function paychat($http) {
   function activate() {
     register();
   }
-  vm.message = 'Stuff you have to do:'
+
+  vm.loggedin = true;
+
 
   function register($scope) {
 
@@ -21,32 +23,6 @@ function paychat($http) {
     console.log(item)
     var user = item
     var add = $http.post('http://localhost:8080/users/' + user.name + '/' + user.password + '/' + user.email + '/' + user.phone)
+    add
   }
-
-
 }
-
-/**
-var app = angular.module('pay');
-
-app.controller('payController', pay);
-
-payChat.$inject = ['$http'];
-
-function register() {
-  var vm = this;
-  activate();
-
-  function activate() {
-    addUser();
-  }
-
-  vm.addUser = function(user) {
-    console.log('New User')
-  //  var user = {}
-  //  user.name =
-  //  var add = $http.post('http://localhost:8080/users/') + user.name + '/' + user.password + '/' + user.email + '/' + user.number
-  }
-
-}
-**/
