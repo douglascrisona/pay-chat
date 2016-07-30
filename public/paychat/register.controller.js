@@ -30,4 +30,17 @@ function paychat($http) {
       vm.contacts = response.data
     })
   }
+
+  vm.addRecipient = function(name, email, phone) {
+    var user = {}
+    user.recipient = name;
+    user.email = email;
+    user.phone = phone;
+    console.log(user)
+    var add = $http.post('http://localhost:8080/recipients/Doug/' + user.recipient + '/' + user.email + '/' + user.phone)
+    add
+      .then(function() {
+        vm.recipients()
+      })
+  }
 }
