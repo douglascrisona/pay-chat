@@ -16,8 +16,17 @@
         <div class="btn-group" id="header">
           <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Left'" id="left">New Invoice</label>
           <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Middle'" id="middle">Invoices</label>
-          <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Right'" id="right">Recipients</label>
+          <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Right'" id="right" ng-click="pay.recipients()">Recipients</label>
         </div>
+        <div ng-show="pay.contacts.length > 0" id="container">
+          <div ng-show="pay.contacts.length > 0" id="recipient-title" class="h3">
+            Your Recipients
+          </div>
+          <div ng-repeat="contacts in pay.contacts" id="recipient-list">
+              <table class="table table-bordered" id="table"><tbody><div id="contacts"><span><td>{{contacts.recipient}}</td></span> <span><td>{{contacts.phone}}</td></span><td>{{contacts.email}}</td></div></tbody></table>
+          </div>
+        </div>
+
       </div>
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -83,8 +92,12 @@
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
       <script src="public/app.js"></script>
       <script src="public/paychat/register.controller.js"></script>
+      <script src="public/paychat/recipients.controller.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </div>
+    <div ng-controller="recipientsController as recipients">
+
     </div>
   </body>
 </html>
