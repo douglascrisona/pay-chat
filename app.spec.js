@@ -32,6 +32,20 @@ describe('New Users', function() {
         done();
       });
     });
+    it('Expects invoice data', function(done) {
+      request({url: 'http://localhost:8080/invoices/', method: 'POST'},
+      function(error, response) {
+        assert.equal(response.statusCode, 404)
+        done()
+      });
+    });
+    it('Creates an invoice', function(done) {
+      request({url: 'http://localhost:8080/invoices/Doug/25/Consulting/5/100/500/Jose', method: 'POST'},
+      function(error, response) {
+        assert.equal(response.statusCode, 200)
+        done()
+      });
+    });
   });
   describe('Read', function() {
     it('Expects a username', function(done) {
@@ -76,8 +90,51 @@ describe('New Users', function() {
         done();
       });
     });
+    it('Expects the invoice issuer', function(done) {
+      request({url: 'http://localhost:8080/invoices/', method: 'GET'},
+      function(error, response) {
+        assert.equal(response.statusCode, 404)
+        done()
+      });
+    });
+    it('Retrieves all invoices of an issuer', function(done) {
+      request({url: 'http://localhost:8080/invoices/Doug/', method: 'GET'},
+      function(error, response) {
+        assert.equal(response.statusCode, 200)
+        done()
+      });
+    });
+    it('Expects the invoice recipient', function(done) {
+      request({url: 'http://localhost:8080/invoices/', method: 'GET'},
+      function(error, response) {
+        assert.equal(response.statusCode, 404)
+        done()
+      });
+    });
+    it('Retrieves all invoices of a recipient', function(done) {
+      request({url: 'http://localhost:8080/invoices/Jose/', method: 'GET'},
+      function(error, response) {
+        assert.equal(response.statusCode, 200)
+        done()
+      });
+    });
   });
-
+  describe('Update', function() {
+    it('Expects the invoice id', function(done) {
+      request({url: 'http://localhost:8080/invoices/', method: 'PUT'},
+      function(error, response) {
+        assert.equal(response.statusCode, 404)
+        done()
+      });
+    });
+    it('Updates the invoice status', function(done) {
+      request({url: 'http://localhost:8080/invoices/Jose/', method: 'GET'},
+      function(error, response) {
+        assert.equal(response.statusCode, 200)
+        done()
+      });
+    });
+  });
   describe('Delete', function() {
     it('Expects a username', function(done) {
       request({url: 'http://localhost:8080/users/', method: 'DELETE'},
@@ -87,7 +144,21 @@ describe('New Users', function() {
       });
     });
     it('Deletes a user', function(done) {
-      request({url: 'http://localhost:8080/users/Doug', method: 'Delete'},
+      request({url: 'http://localhost:8080/users/Doug', method: 'DELETE'},
+      function(error, response) {
+        assert.equal(response.statusCode, 200)
+        done();
+      });
+    });
+    it('Expects an invoice id', function(done) {
+      request({url: 'http://localhost:8080/invoices/', method: 'DELETE'},
+      function(error, response) {
+        assert.equal(response.statusCode, 404)
+        done();
+      });
+    });
+    it('Deletes an invoice by id', function(done) {
+      request({url: 'http://localhost:8080/invoices/25', method: 'DELETE'},
       function(error, response) {
         assert.equal(response.statusCode, 200)
         done();
