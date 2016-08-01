@@ -15,7 +15,7 @@
       <div ng-show="pay.loggedin == true">
         <div class="btn-group" id="header">
           <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Left'" id="left" ng-click=pay.displayNewInvoice()>New Invoice</label>
-          <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Middle'" id="middle" ng-click="pay.displayInvoices()">Invoices</label>
+          <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Middle'" id="middle" ng-click="pay.viewInvoices()">Invoices</label>
           <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Right'" id="right" ng-click="pay.recipients()">Recipients</label>
         </div>
         <div ng-show="pay.showRecipients == true">
@@ -48,6 +48,9 @@
             <button class="btn btn-primary" ng-click="pay.addRecipient(name, email, phone)">Add <span class="glyphicon glyphicon-plus"></span></button>
           </form>
         </div>
+
+
+
       </div>
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -79,7 +82,7 @@
             <div class="modal-footer">
               <span>Log In</span>
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" id="register"  ng-click="pay.newUser(user)" data-dismiss="modal">Sign Up</button>
+              <button type="button" class="btn btn-primary" id="register" ng-click="pay.newUser(user)" data-dismiss="modal">Sign Up</button>
             </div>
           </div>
         </div>
@@ -125,8 +128,26 @@
           <button class="btn btn-default" ng-click="pay.createInvoice(invoice)">Submit</button>
         </div>
       </div>
-      <div ng-show="pay.invoices == true">
-        Invoices
+      <div ng-show="pay.invoices == true" class="col-md-9" id="all-invoices">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Sent by</th>
+            <th>Details</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="invoices in pay.invoice" >
+            <th scope="row">{{invoices.id}}</th>
+            <td>{{invoices.poster}}</td>
+            <td>{{invoices.details}}</td>
+            <td>{{invoices.total}}</td>
+            <td><button>Discuss</button></td>
+          </tr>
+        </table>
       </div>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
       <script src="public/app.js"></script>
