@@ -29,6 +29,7 @@ function paychat($http) {
   vm.recipients = function() {
     var view = $http.get('http://localhost:8080/recipients/Doug/').then(function successCallback(response) {
       vm.contacts = response.data
+      console.log(vm.contacts)
 
       vm.showRecipients = true
       vm.showInvoices = false
@@ -65,11 +66,16 @@ function paychat($http) {
     vm.invoices = false;
   }
 
-  vm.displayInvoices = function() {
-    console.log('invoice')
-    vm.invoices = true;
-    vm.showRecipients = false;
-    vm.showNewInvoice = false;
-    vm.showInvoices = false;
+
+  vm.viewInvoices = function() {
+    var view = $http.get('http://localhost:8080/invoices/myinvoices/Juan').then(function successCallback(response) {
+      vm.invoice = response.data
+      console.log(vm.invoice)
+
+      vm.invoices = true;
+      vm.showRecipients = false;
+      vm.showNewInvoice = false;
+      vm.showInvoices = false;
+    });
   }
 }
