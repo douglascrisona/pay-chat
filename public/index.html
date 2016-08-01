@@ -110,27 +110,30 @@
           </div>
         </div>
       </div>
+      <div ng-show="pay.showNewInvoice == true">
+        <div id="container">
+          <div id="id-form">Id</div>
+          <input type="text" id="form-id" ng-model="invoice.id" placeholder="10">
+          <input type="text" id="form-name" ng-model="invoice.name" placeholder="Name">
+          <div id="invoice-form">
+            <input type="text" id="form-details" ng-model="invoice.details" placeholder="Details">
+            <input type="text" id="form-hours" ng-model="invoice.qty" placeholder="Hours">
+            <input type="text" id="form-rate" ng-model="invoice.cost" placeholder="Rate">
+            <input type="text" id="form-total" ng-model="invoice.total" placeholder="Total">
+          </div>
+          <input type="text" id="form-recipient" ng-model="invoice.recipient" placeholder="Recipient">
+          <button class="btn btn-default" ng-click="pay.createInvoice(invoice)">Submit</button>
+        </div>
+      </div>
+      <div ng-show="pay.invoices == true">
+        Invoices
+      </div>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
       <script src="public/app.js"></script>
       <script src="public/paychat/register.controller.js"></script>
       <script src="public/paychat/recipients.controller.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-      <div ng-show="pay.showNewInvoice == true">
-        <div id="container">
-          <input type="text" ng-model="invoice.id" placeholder="Id">
-          <input type="text" ng-model="invoice.name" placeholder="name">
-          <input type="text" ng-model="invoice.details" placeholder="Details">
-          <input type="text" ng-model="invoice.qty" placeholder="qty">
-          <input type="text" ng-model="invoice.cost" placeholder="cost">
-          <input type="text" ng-model="invoice.total" placeholder="total">
-          <input type="text" ng-model="invoice.recipient" placeholder="recipient">
-          <button ng-click="pay.createInvoice(invoice)">Submit</button>
-        </div>
-      </div>
-      <div ng-show="pay.invoices == true">
-        Invoices
-      </div>
     </div>
   </body>
 </html>
