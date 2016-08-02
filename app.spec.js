@@ -40,7 +40,7 @@ describe('New Users', function() {
       });
     });
     it('Creates a recipient', function(done) {
-      request({url: 'http://localhost:8080/recipients/Doug/Julio/Julio@julo.com/555-555-5555', method: 'POST'},
+      request({url: 'http://localhost:8080/recipients/Julio/Julio@julo.com/555-555-5555', method: 'POST'},
       function(error, response) {
         assert.equal(response.statusCode, 200)
         done();
@@ -104,15 +104,15 @@ describe('New Users', function() {
         done();
       });
     });
-    it('Expects a user', function(done) {
-      request({url: 'http://localhost:8080/recipients/', method: 'GET'},
+    it('Expects recipients', function(done) {
+      request({url: 'http://localhost:8080/sessions', method: 'GET'},
       function(error, response) {
         assert.equal(response.statusCode, 404)
         done();
       });
     });
     it('Retrieves a recipient list', function(done) {
-      request({url: 'http://localhost:8080/recipients/Doug', method: 'GET'},
+      request({url: 'http://localhost:8080/recipients/', method: 'GET'},
       function(error, response) {
         assert.equal(response.statusCode, 200)
         done();
