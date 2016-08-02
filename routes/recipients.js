@@ -1,17 +1,21 @@
 var express = require('express')
 var recipients = express.Router()
 var MongoClient = require('mongodb').MongoClient
-
 var jsonParser = require('body-parser').json();
+var cookieParser = require('cookie-parser')();
+
+recipients.use(cookieParser);
 
 recipients.use(jsonParser);
+
 var url = 'mongodb://localhost:27017/users'
 
-recipients.post('/:name/:recipient/:email/:phone', function(req, res) {
+recipients.post('/:recipient/:email/:phone', function(req, res) {
   var user = {}
   user.recipient = req.params.recipient;
   user.email = req.params.email;
   user.phone = req.params.phone;
+  console.log(req.cookies.trackingID)
 
   MongoClient.connect(url, function(err, db) {
   if(err) {
@@ -21,7 +25,7 @@ recipients.post('/:name/:recipient/:email/:phone', function(req, res) {
   }
   var users = db.collection('users')
   users
-    .update({name: req.params.name},
+    .update({sessionId: req.cookies.trackingID},
       {$push: {recipients: user} },
     function(err, result) {
       db.close()
@@ -31,7 +35,7 @@ recipients.post('/:name/:recipient/:email/:phone', function(req, res) {
   res.send();
 });
 
-recipients.get('/:name', function(req, res) {
+recipients.get('/', function(req, res) {
   MongoClient.connect(url, function(err, db) {
   if(err) {
     console.log('Not Connected')
@@ -41,10 +45,9 @@ recipients.get('/:name', function(req, res) {
   var users = db.collection('users')
     users
     .find().forEach(function(item) {
-      if(item.name == req.params.name) {
-        item.recipients.forEach(function(name) {
-          res.send(name)
-        });
+      if(item.sessionId == req.cookies.trackingID) {
+        res.send(item.recipients)
+        console.log(item.recipients)
       }
     });
     db.close()
