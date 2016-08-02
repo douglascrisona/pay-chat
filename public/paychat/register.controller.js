@@ -25,7 +25,7 @@ function paychat($http) {
 
 
   vm.recipients = function() {
-    var view = $http.get('http://localhost:8080/recipients/Doug/').then(function successCallback(response) {
+    var view = $http.get('http://localhost:8080/recipients/').then(function successCallback(response) {
       vm.contacts = response.data
       vm.showRecipients = true
       vm.showInvoices = false
@@ -39,7 +39,7 @@ function paychat($http) {
     user.recipient = name;
     user.email = email;
     user.phone = phone;
-    var add = $http.post('http://localhost:8080/recipients/Doug/' + user.recipient + '/' + user.email + '/' + user.phone)
+    var add = $http.post('http://localhost:8080/recipients/' + user.recipient + '/' + user.email + '/' + user.phone)
     add
       .then(function() {
         vm.recipients()
