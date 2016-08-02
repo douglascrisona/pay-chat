@@ -54,7 +54,7 @@ describe('New Users', function() {
       });
     });
     it('Creates an invoice', function(done) {
-      request({url: 'http://localhost:8080/invoices/Doug/25/Consulting/5/100/500/Jose', method: 'POST'},
+      request({url: 'http://localhost:8080/invoices/Doug/25/Consulting/5/100/500/Doug', method: 'POST'},
       function(error, response) {
         assert.equal(response.statusCode, 200)
         done()
@@ -90,7 +90,7 @@ describe('New Users', function() {
         done();
       });
     });
-    it('Expects expecets sessions', function(done) {
+    it('Expects sessions', function(done) {
       request({url: 'http://localhost:8080/login/', method: 'GET'},
       function(error, response) {
         assert.equal(response.statusCode, 404)
@@ -154,7 +154,7 @@ describe('New Users', function() {
       });
     });
     it('Retrieves all invoices of a recipient', function(done) {
-      request({url: 'http://localhost:8080/invoices/Jose/', method: 'GET'},
+      request({url: 'http://localhost:8080/invoices/myinvoices/Doug', method: 'GET'},
       function(error, response) {
         assert.equal(response.statusCode, 200)
         done()

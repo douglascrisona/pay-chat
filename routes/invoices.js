@@ -1,11 +1,14 @@
 var express = require('express')
 var invoices = express.Router()
 var MongoClient = require('mongodb').MongoClient
-
+var cookieParser = require('cookie-parser')();
 var jsonParser = require('body-parser').json();
 
+invoices.use(cookieParser);
 invoices.use(jsonParser);
-var url = 'mongodb://localhost:27017/invoices'
+
+var url = 'mongodb://localhost:27017/users'
+
 
 invoices.post('/:poster/:id/:details/:qty/:cost/:total/:recipient', function(req, res) {
   var invoice = {}
@@ -23,11 +26,10 @@ invoices.post('/:poster/:id/:details/:qty/:cost/:total/:recipient', function(req
   } else {
     console.log('Connected correctly to server')
   }
-  var invoices = db.collection('invoices')
-  invoices
-    .insertMany([
-      invoice
-    ],
+  var users = db.collection('users')
+  users
+    .update({name: req.params.recipient},
+      {$push: {invoices: invoice} },
     function(err, result) {
       db.close()
     }
@@ -36,40 +38,26 @@ invoices.post('/:poster/:id/:details/:qty/:cost/:total/:recipient', function(req
   res.send();
 });
 
-invoices.get('/:issuer', function(req, res) {
-
-  MongoClient.connect(url, function(err, db) {
-    if(err) {
-      console.log('Not Connected')
-    } else {
-      console.log('Connected correctly to server')
-    }
-    var invoices = db.collection('invoices');
-    invoices
-      .find({poster: req.params.issuer})
-      .toArray(function(err, docs) {
-        res.send(docs);
-        db.close();
-      });
-  });
-});
 
 invoices.get('/myinvoices/:name', function(req, res) {
   MongoClient.connect(url, function(err, db) {
-    if(err) {
-      console.log('Not Connected')
-    } else {
-      console.log('Connected correctly to server')
-    }
-    var invoices = db.collection('invoices');
-    invoices
-      .find({recipient: req.params.name})
-      .toArray(function(err, docs) {
-        res.send(docs);
-        db.close();
-      });
+  if(err) {
+    console.log('Not Connected')
+  } else {
+    console.log('Connected correctly to server')
+  }
+  var users = db.collection('users')
+    users
+    .find().forEach(function(item) {
+      if(item.name == req.params.name) {
+        res.send(item.invoices)
+        console.log('IT WORKS')
+      }
+    });
+      db.close()
   });
 });
+
 
 invoices.put('/:id/:status', function(req, res) {
   MongoClient.connect(url, function(err, db) {
