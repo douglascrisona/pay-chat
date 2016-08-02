@@ -48,9 +48,6 @@
             <button class="btn btn-primary" ng-click="pay.addRecipient(name, email, phone)">Add <span class="glyphicon glyphicon-plus"></span></button>
           </form>
         </div>
-
-
-
       </div>
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -92,7 +89,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Register for Pay Chat</h4>
+              <h4 class="modal-title" id="myModalLabel">Login to Pay Chat</h4>
             </div>
             <div class="modal-body">
               <form class="modal-body">
@@ -108,7 +105,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" id="signin"  ng-click="pay.newUser(user)" data-dismiss="modal">Sign in</button>
+              <button type="button" class="btn btn-primary" id="signin"  ng-click="pay.login(user)" data-dismiss="modal">Sign in</button>
             </div>
           </div>
         </div>
@@ -144,12 +141,13 @@
             <th scope="row">{{invoices.id}}</th>
             <td>{{invoices.poster}}</td>
             <td>{{invoices.details}}</td>
-            <td>{{invoices.total}}</td>
+            <td>${{invoices.total}}</td>
             <td><button>Discuss</button></td>
           </tr>
         </table>
       </div>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+      <script src="node_modules/angular-cookies/angular-cookies.js"></script>
       <script src="public/app.js"></script>
       <script src="public/paychat/register.controller.js"></script>
       <script src="public/paychat/recipients.controller.js"></script>
