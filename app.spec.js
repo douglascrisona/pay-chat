@@ -18,6 +18,20 @@ describe('New Users', function() {
         done()
       });
     });
+    it('Expects expecets a username for reference', function(done) {
+      request({url: 'http://localhost:8080/login/', method: 'POST'},
+      function(error, response) {
+        assert.equal(response.statusCode, 404)
+        done();
+      });
+    })
+    it('Creates a new sessionID', function(done) {
+      request({url: 'http://localhost:8080/login/Doug/', method: 'POST'},
+      function(error, response) {
+        assert.equal(response.statusCode, 200)
+        done();
+      });
+    });
     it('Expects a recipient', function(done) {
       request({url: 'http://localhost:8080/recipients/', method: 'POST'},
       function(error, response) {
@@ -57,6 +71,34 @@ describe('New Users', function() {
     });
     it('Retrieves a user', function(done) {
       request({url: 'http://localhost:8080/users/Doug', method: 'GET'},
+      function(error, response) {
+        assert.equal(response.statusCode, 200)
+        done();
+      });
+    });
+    it('Expects login information', function(done) {
+      request({url: 'http://localhost:8080/login/', method: 'GET'},
+      function(error, response) {
+        assert.equal(response.statusCode, 404)
+        done();
+      });
+    })
+    it('Logs a user in', function(done) {
+      request({url: 'http://localhost:8080/login/Doug/1234', method: 'GET'},
+      function(error, response) {
+        assert.equal(response.statusCode, 200)
+        done();
+      });
+    });
+    it('Expects expecets sessions', function(done) {
+      request({url: 'http://localhost:8080/login/', method: 'GET'},
+      function(error, response) {
+        assert.equal(response.statusCode, 404)
+        done();
+      });
+    })
+    it('Creates a new sessionID', function(done) {
+      request({url: 'http://localhost:8080/login/session/', method: 'GET'},
       function(error, response) {
         assert.equal(response.statusCode, 200)
         done();
