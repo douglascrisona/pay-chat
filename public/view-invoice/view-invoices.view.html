@@ -1,0 +1,23 @@
+<div ng-controller="viewInvoiceController as invoices">
+  <div class="col-md-9" id="all-invoices">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Sent by</th>
+        <th>Details</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="invoices in invoices.invoice" >
+        <th scope="row">{{invoices.id}}</th>
+        <td>{{invoices.poster}}</td>
+        <td>{{invoices.details}}</td>
+        <td>${{invoices.total}}</td>
+        <td><button>Discuss</button></td>
+      </tr>
+    </table>
+  </div>
+</div>

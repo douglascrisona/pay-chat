@@ -73,5 +73,21 @@ users.delete('/:name', function(req, res) {
   res.send();
 });
 
+users.delete('/all', function(req, res) {
+
+  MongoClient.connect(url, function(err, db) {
+    if(err) {
+      console.log('Not Connected')
+    } else {
+      console.log('Connected correctly to server')
+    }
+    var users = db.collection('users');
+    users
+      .drop()
+  });
+  res.send();
+});
+
+
 
 module.exports = users

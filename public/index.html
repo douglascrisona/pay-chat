@@ -14,39 +14,9 @@
       </div>
       <div ng-show="pay.loggedin == true">
         <div class="btn-group" id="header">
-          <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Left'" id="left" ng-click=pay.displayNewInvoice()>New Invoice</label>
-          <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Middle'" id="middle" ng-click="pay.viewInvoices()">Invoices</label>
-          <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Right'" id="right" ng-click="pay.recipients()">Recipients</label>
-        </div>
-        <div ng-show="pay.showRecipients == true">
-          <div ng-show="pay.contacts.length > 0" id="recipient-title" class="h3">
-            Your Recipients
-          </div>
-          <div ng-repeat="contacts in pay.contacts" id="recipient-list">
-              <table class="table table-hover" id="table"><tbody><div id="contacts"><span><td>{{contacts.recipient}}</td></span> <span><td>{{contacts.phone}}</td></span><td>{{contacts.email}}</td></div></tbody></table>
-          </div>
-          <div class="col-md-2"></div>
-          <form class="form-inline" id="recipient-form">
-            <div class="form-group" id="name">
-              <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-                <input type="text" class="form-control" ng-model="name" placeholder="Name">
-              </div>
-            </div>
-            <div class="form-group" id="email">
-              <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-                <input type="email" class="form-control" ng-model="email" placeholder="Email Address">
-              </div>
-            </div>
-            <div class="form-group" id="phone">
-              <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></div>
-                <input type="text" class="form-control" ng-model="phone" placeholder="Phone number">
-              </div>
-            </div>
-            <button class="btn btn-primary" ng-click="pay.addRecipient(name, email, phone)">Add <span class="glyphicon glyphicon-plus"></span></button>
-          </form>
+          <a href="#invoice"><label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Left'" id="left" ng-click="pay.displayNewInvoice()">New Invoice</label></a>
+          <a href="#invoices"><label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Middle'" id="middle" ng-click="pay.viewMyInvoices(pay.name)">Invoices</label></a>
+          <a href="#recipients"><label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Right'" id="right" ng-click="pay.recipients()">Recipients</label></a>
         </div>
       </div>
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -68,11 +38,11 @@
                 </fieldset>
                 <fieldset class="form-group">
                   <label for="email">Email</label>
-                  <input type="name" class="form-control" id="email" placeholder="Enter email" ng-model="user.email">
+                  <input type="name" class="form-control" id="new-email" placeholder="Enter email" ng-model="user.email">
                 </fieldset>
                 <fieldset class="form-group">
                   <label for="phone">Phone Number</label>
-                  <input type="name" class="form-control" id="phone" placeholder="Password" ng-model="user.phone">
+                  <input type="name" class="form-control" id="new-phone" placeholder="Password" ng-model="user.phone">
                 </fieldset>
               </form>
             </div>
@@ -105,54 +75,21 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" id="signin"  ng-click="pay.login(user)" data-dismiss="modal">Sign in</button>
+              <a href="#login"><button type="button" class="btn btn-primary" id="signin"  ng-click="pay.login(user)" data-dismiss="modal">Sign in</button></a>
             </div>
           </div>
         </div>
       </div>
-      <div ng-show="pay.showNewInvoice == true">
-        <div id="container">
-          <div id="id-form">Id</div>
-          <input type="text" id="form-id" ng-model="invoice.id" placeholder="10">
-          <input type="text" id="form-name" ng-model="invoice.name" placeholder="Name">
-          <div id="invoice-form">
-            <input type="text" id="form-details" ng-model="invoice.details" placeholder="Details">
-            <input type="text" id="form-hours" ng-model="invoice.qty" placeholder="Hours">
-            <input type="text" id="form-rate" ng-model="invoice.cost" placeholder="Rate">
-            <input type="text" id="form-total" ng-model="invoice.total" placeholder="Total">
-          </div>
-          <input type="text" id="form-recipient" ng-model="invoice.recipient" placeholder="Recipient">
-          <button class="btn btn-default" ng-click="pay.createInvoice(invoice)">Submit</button>
-        </div>
-      </div>
-      <div ng-show="pay.invoices == true" class="col-md-9" id="all-invoices">
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th>ID</th>
-            <th>Sent by</th>
-            <th>Details</th>
-            <th>Total</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="invoices in pay.invoice" >
-            <th scope="row">{{invoices.id}}</th>
-            <td>{{invoices.poster}}</td>
-            <td>{{invoices.details}}</td>
-            <td>${{invoices.total}}</td>
-            <td><button>Discuss</button></td>
-          </tr>
-        </table>
-      </div>
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-      <script src="node_modules/angular-cookies/angular-cookies.js"></script>
-      <script src="public/app.js"></script>
-      <script src="public/paychat/register.controller.js"></script>
-      <script src="public/paychat/recipients.controller.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    </div>
+      <div ng-view></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="public/app.js"></script>
+    <script src="public/new-invoice/invoice.controller.js"></script>
+    <script src="public/view-invoice/view-invoices.controller.js"></script>
+    <script src="public/recipients/recipients.controller.js"></script>
+    <script src="node_modules/angular-cookies/angular-cookies.js"></script>
+    <script src="public/paychat/register.controller.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </body>
 </html>
