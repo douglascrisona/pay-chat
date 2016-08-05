@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="default.css">
+    <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Karla' rel='stylesheet' type='text/css'>
+  </head>
+  <body ng-app="paychat">
+    <div ng-controller="paychatController as pay">
+      <div>
+        <h4 id="logo">Pay Chat</h4>
+        <h4 id="sign-up" data-toggle="modal" data-target="#myModal">Sign Up</h4>
+        <h4 id="sign-in" data-toggle="modal" data-target="#loginModal">Log in</h4>
+      </div>
+      <div id="home-page" ng-hide="pay.loggedin == true">
+        <h1 id="logo-line">Welcome to paychat</h1>
+        <div id="tagline" style="clear: right;"><h4 id="tagline">Invoice clients and live chat with them</h5></div>
+
+        <div id="invoice-section">
+          <img id="invoice-icon" alt=""src="/images/invoice.svg"></img>
+          <h2 id="invoice-header">CREATE INVOICES</h2>
+          <h4>Create new invoices and keep track of all past invoices</h4>
+        </div>
+        <div id="email-section">
+          <h2>NOTIFY CLIENTS</h2>
+          <h4 id="email-tagline">Notify clients of invoices via email and sms</h4>
+          <img id="email-icon"src="/images/email.svg"></img>
+        </div>
+        <div id="chat-section">
+          <span><img id="chat-icon" src="/images/chat.svg"></img></span>
+          <h2 id="live-chat-header">LIVE CHAT WITH CLIENTS</h2>
+          <h4>Live chat with clients to discuss invoice details</h4>
+        </div>
+      </div>
+      <div ng-show="pay.loggedin == true">
+        <div class="btn-group" id="header">
+          <a href="#invoice"><label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Left'" id="left" ng-click="pay.displayNewInvoice()">New Invoice</label></a>
+          <a href="#invoices"><label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Middle'" id="middle" ng-click="pay.viewMyInvoices(pay.name)">Invoices</label></a>
+          <a href="#recipients"><label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Right'" id="right" ng-click="pay.recipients()">Recipients</label></a>
+        </div>
+      </div>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Register for Pay Chat</h4>
+            </div>
+            <div class="modal-body">
+              <form class="modal-body">
+                <fieldset class="form-group">
+                  <label for="name">Username</label>
+                  <input type="name" class="form-control" id="username" placeholder="Enter username" ng-model="user.name">
+                </fieldset>
+                <fieldset class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="Password" ng-model="user.password">
+                </fieldset>
+                <fieldset class="form-group">
+                  <label for="email">Email</label>
+                  <input type="name" class="form-control" id="new-email" placeholder="Enter email" ng-model="user.email">
+                </fieldset>
+                <fieldset class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="name" class="form-control" id="new-phone" placeholder="Password" ng-model="user.phone">
+                </fieldset>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <span>Log In</span>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="register" ng-click="pay.newUser(user)" data-dismiss="modal">Sign Up</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Login to Pay Chat</h4>
+            </div>
+            <div class="modal-body">
+              <form class="modal-body">
+                <fieldset class="form-group">
+                  <label for="name">Username</label>
+                  <input type="name" class="form-control" id="username" placeholder="Enter username" ng-model="user.name">
+                </fieldset>
+                <fieldset class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="Password" ng-model="user.password">
+                </fieldset>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <a href="#login"><button type="button" class="btn btn-primary" id="signin"  ng-click="pay.login(user)" data-dismiss="modal">Sign in</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-view></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="public/app.js"></script>
+    <script src="public/new-invoice/invoice.controller.js"></script>
+    <script src="public/view-invoice/view-invoices.controller.js"></script>
+    <script src="public/recipients/recipients.controller.js"></script>
+    <script src="node_modules/angular-cookies/angular-cookies.js"></script>
+    <script src="public/paychat/register.controller.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="default.js"</script>
+  </body>
+</html>

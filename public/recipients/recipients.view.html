@@ -1,0 +1,30 @@
+<div>
+  <div ng-show="recipients.contacts.length > 0" id="recipient-title" class="h3">
+    YOUR RECIPIENTS
+  </div>
+  <div ng-repeat="contacts in recipients.contacts" id="recipient-list">
+      <table class="table table-hover" id="table"><tbody><div id="contacts"><span><td>{{contacts.recipient}}</td></span> <span><td>{{contacts.phone}}</td></span><td>{{contacts.email}}</td></div></tbody></table>
+  </div>
+  <div class="col-md-2"></div>
+  <form class="form-inline" id="recipient-form">
+    <div class="form-group" id="name">
+      <div class="input-group">
+        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+        <input type="text" class="form-control" ng-model="name" placeholder="Name">
+      </div>
+    </div>
+    <div class="form-group" id="email">
+      <div class="input-group">
+        <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+        <input type="email" class="form-control" ng-model="email" placeholder="Email Address">
+      </div>
+    </div>
+    <div class="form-group" id="phone">
+      <div class="input-group">
+        <div class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></div>
+        <input type="text" class="form-control" ng-model="phone" placeholder="Phone number">
+      </div>
+    </div>
+    <button class="btn btn-primary" ng-click="recipients.addRecipient(name, email, phone)">Add <span class="glyphicon glyphicon-plus"></span></button>
+  </form>
+</div>
