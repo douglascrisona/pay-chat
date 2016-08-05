@@ -2,6 +2,9 @@ body {
   background-color: rgb(248, 248, 248);
 }
 
+#home-page {
+  font-family: 'Karla', sans-serif;
+}
 h4 {
   color: rgb(77, 77, 77);
 }
@@ -10,6 +13,62 @@ h4 {
   float: right;
   margin-right: 150px;
   margin-top: -30px;
+  font-family: 'Amatic SC', cursive;
+}
+
+#invoice-header {
+  padding-top: 40px;
+}
+
+#live-chat-header {
+  padding-top: 30px;
+}
+
+#email-tagline {
+  padding-bottom: 20px;
+}
+#invoice-section {
+  margin-left: 20%;
+  margin-bottom: 125px;
+}
+
+#email-section {
+  margin-left: 22%;
+  margin-bottom: 50px;
+}
+
+#chat-section {
+  margin-left: 20%;
+}
+
+#invoice-icon {
+  height: 150px;
+  float: left;
+  margin-right: 30px;
+}
+
+#email-icon {
+  height: 150px;
+  margin-left: 500px;
+  margin-top: -140px;
+}
+
+#chat-icon {
+  height: 150px;
+  float: left;
+  margin-right: 60px;
+}
+
+#logo-line {
+  text-align: center;
+}
+#tagline {
+  text-align: center;
+}
+
+#tagline {
+  color: rgb(179, 179, 179);
+  margin-bottom: 150px
 }
 
 #sign-up:hover {
@@ -20,6 +79,7 @@ h4 {
   float: right;
   margin-top: -30px;
   margin-right: 80px;
+  font-family: 'Amatic SC', cursive;
 }
 
 #sign-in:hover {
@@ -95,9 +155,15 @@ h4 {
 
 td {
   width: 200px;
-  font-weight: bold;
+  /*font-weight: lighter;*/
   font-size: 15px;
   color: gray;
+  color: black;
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+th {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 20px;
 }
 
 #id-form {
@@ -114,16 +180,27 @@ td {
   border-top: none;
   border-right: none;
   border-bottom: 1px dotted gray;
+  outline: none;
+  padding-top: 10px;
+}
+
+#invoice-title {
+  text-align: center;
+  font-family: 'Karla', sans-serif;
+  font-size: 25px;
+
 }
 
 #form-name {
   float: right;
-  margin-right: 125px;
+  margin-right: 175px;
   border-left: none;
   border-top: none;
   border-right: none;
   width: 45px;
   border-bottom: 1px dotted gray;
+  outline: none;
+  padding-top: 10px;
 }
 
 #form-details {
@@ -176,3 +253,12 @@ td {
   margin-top: 30px;
   margin-left: 12%;
 }
+
+
+#chat-form {padding: 3px; position: fixed; bottom: 0; width: 500px;}
+form input { border: 0; padding: 10px; width: 90%; margin-right: .5%;}
+form button { width: 9%; background: #31708f; border: none; padding: 10px;}
+#messages { list-style-type: none; margin: 0; padding: 0;}
+#messages li { padding: 5px 10px; font-family: 'PT Sans Narrow', sans-serif; }
+#messages li:nth-child(odd) { background: #eee; }
+#chat { height: 300px; width: 500px; margin-top: 850px; border-radius: 3px; position: fixed; bottom: 0; background-color: rgb(248, 248, 248); margin-left: 360px;}
