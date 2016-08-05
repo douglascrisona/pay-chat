@@ -24,7 +24,6 @@ invoices.post('/:poster/:id/:details/:qty/:cost/:total/:recipient', function(req
   if(err) {
     console.log('Not Connected')
   } else {
-    console.log('Connected correctly to server')
   }
   var users = db.collection('users')
   users
@@ -44,14 +43,13 @@ invoices.get('/myinvoices/:name', function(req, res) {
   if(err) {
     console.log('Not Connected')
   } else {
-    console.log('Connected correctly to server')
+
   }
   var users = db.collection('users')
     users
     .find().forEach(function(item) {
       if(item.name == req.params.name) {
         res.send(item.invoices)
-        console.log('IT WORKS')
       }
     });
       db.close()
@@ -64,7 +62,6 @@ invoices.put('/:id/:status', function(req, res) {
     if(err) {
       console.log('Not Connected')
     } else {
-      console.log('Connected correctly to server')
     }
     var invoices = db.collection('invoices');
     invoices
@@ -83,7 +80,6 @@ invoices.delete('/:id', function(req, res) {
     if(err) {
       console.log('Not Connected')
     } else {
-      console.log('Connected correctly to server')
     }
     var invoices = db.collection('invoices');
     invoices

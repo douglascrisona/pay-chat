@@ -16,7 +16,6 @@ users.post('/:name/:password/:email/:number', function(req, res) {
   if(err) {
     console.log('Not Connected')
   } else {
-    console.log('Connected correctly to server')
   }
   var users = db.collection('users')
   users
@@ -39,7 +38,6 @@ users.get('/:name', function(req, res) {
     if(err) {
       console.log('Not Connected')
     } else {
-      console.log('Connected correctly to server')
     }
     var users = db.collection('users');
     users
@@ -59,7 +57,6 @@ users.delete('/:name', function(req, res) {
     if(err) {
       console.log('Not Connected')
     } else {
-      console.log('Connected correctly to server')
     }
     var users = db.collection('users');
     users
@@ -79,7 +76,6 @@ users.delete('/all', function(req, res) {
     if(err) {
       console.log('Not Connected')
     } else {
-      console.log('Connected correctly to server')
     }
     var users = db.collection('users');
     users

@@ -1,12 +1,12 @@
-<div ng-controller="viewInvoiceController as invoices">
+<div>
   <div class="col-md-9" id="all-invoices">
     <table class="table table-striped">
       <thead>
       <tr>
         <th>ID</th>
-        <th>Sent by</th>
-        <th>Details</th>
-        <th>Total</th>
+        <th>SENT BY</th>
+        <th>DETAILS</th>
+        <th>TOTAL</th>
         <th></th>
       </tr>
     </thead>
@@ -16,8 +16,23 @@
         <td>{{invoices.poster}}</td>
         <td>{{invoices.details}}</td>
         <td>${{invoices.total}}</td>
-        <td><button>Discuss</button></td>
+        <td><button ng-click="$parent.invoices.displayChat(); $parent.invoices.checkStatus()">DISCUSS</button></td>
       </tr>
     </table>
   </div>
+
+  <!-- <div ng-show="invoices.chat == true"> -->
+  <!--<input type="textarea" ng-model="person.name"></input><button ng-click="invoices.launchChat(person.name)" type="button">Select</button>-->
+    <div id="the-chat">
+    <div id="chat">
+      <ul id="messages">
+        <li ng-repeat="convos in invoices.convos">{{convos.username}}: {{convos.msg}}</li>
+      </ul>
+      <form id="chat-form">
+        <input type="text" id="m" ng-change="change()" ng-model="msg"><button type="button" ng-click="invoices.sendMessage(msg)"><span class="glyphicon glyphicon-pencil"></span></button>
+      </form>
+    </div>
+    </div>
+
+ </div>
 </div>

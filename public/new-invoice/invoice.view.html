@@ -1,8 +1,10 @@
 <div ng-controller="invoiceController as invoice">
   <div id="container">
-    <div id="id-form">Id</div>
+
+  <!--  <div id="id-form">Id</div> -->
     <input type="text" id="form-id" ng-model="invoice.id" placeholder="10">
     <input type="text" id="form-name" ng-model="invoice.name" placeholder="Name">
+    <div id="invoice-title">New Invoice</div>
     <div id="invoice-form">
       <input type="text" id="form-details" ng-model="invoice.details" placeholder="Details">
       <input type="text" id="form-hours" ng-model="invoice.qty" placeholder="Hours">
@@ -10,6 +12,6 @@
       <input type="text" id="form-total" ng-model="invoice.total" placeholder="Total">
     </div>
     <input type="text" id="form-recipient" ng-model="invoice.recipient" placeholder="Recipient">
-    <button class="btn btn-default" ng-click="invoice.createInvoice(invoice)">Submit</button>
+    <button type="button" ng-click="invoice.createInvoice(invoice)">Submit</button>
   </div>
 </div>

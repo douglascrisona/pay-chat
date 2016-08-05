@@ -1,6 +1,6 @@
-<div ng-controller="recipientsController as recipients">
+<div>
   <div ng-show="recipients.contacts.length > 0" id="recipient-title" class="h3">
-    Your Recipients
+    YOUR RECIPIENTS
   </div>
   <div ng-repeat="contacts in recipients.contacts" id="recipient-list">
       <table class="table table-hover" id="table"><tbody><div id="contacts"><span><td>{{contacts.recipient}}</td></span> <span><td>{{contacts.phone}}</td></span><td>{{contacts.email}}</td></div></tbody></table>

@@ -22,7 +22,6 @@ login.get('/:name/:password', function(req, res) {
     if(err) {
       console.log('Not Connected')
     } else {
-      console.log('Connected correctly to server')
     }
     var users = db.collection('users')
       users
@@ -43,7 +42,6 @@ login.post('/:name', function(req, res) {
   if(err) {
     console.log('Not Connected')
   } else {
-    console.log('Connected correctly to server')
   }
   var users = db.collection('users')
   console.log(req.params.name)
@@ -66,7 +64,6 @@ login.get('/session', function(req, res) {
     if(err) {
       console.log('Not Connected')
     } else {
-      console.log('Connected correctly to server')
     }
     var users = db.collection('users')
       users

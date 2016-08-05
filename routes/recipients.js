@@ -21,7 +21,6 @@ recipients.post('/:recipient/:email/:phone', function(req, res) {
   if(err) {
     console.log('Not Connected')
   } else {
-    console.log('Connected correctly to server')
   }
   var users = db.collection('users')
   users
@@ -40,7 +39,6 @@ recipients.get('/', function(req, res) {
   if(err) {
     console.log('Not Connected')
   } else {
-    console.log('Connected correctly to server')
   }
   var users = db.collection('users')
     users
@@ -59,7 +57,6 @@ recipients.get('/user/:name/:recipient', function(req, res) {
   if(err) {
     console.log('Not Connected')
   } else {
-    console.log('Connected correctly to server')
   }
   var users = db.collection('users')
     users
@@ -86,7 +83,6 @@ recipients.delete('/:name/:recipient', function(req, res) {
   if(err) {
     console.log('Not Connected')
   } else {
-    console.log('Connected correctly to server')
   }
   var users = db.collection('users')
   users

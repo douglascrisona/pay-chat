@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="default.css">
+    <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Karla' rel='stylesheet' type='text/css'>
   </head>
   <body ng-app="paychat">
     <div ng-controller="paychatController as pay">
@@ -11,6 +14,26 @@
         <h4 id="logo">Pay Chat</h4>
         <h4 id="sign-up" data-toggle="modal" data-target="#myModal">Sign Up</h4>
         <h4 id="sign-in" data-toggle="modal" data-target="#loginModal">Log in</h4>
+      </div>
+      <div id="home-page" ng-hide="pay.loggedin == true">
+        <h1 id="logo-line">Welcome to paychat</h1>
+        <div id="tagline" style="clear: right;"><h4 id="tagline">Invoice clients and live chat with them</h5></div>
+
+        <div id="invoice-section">
+          <img id="invoice-icon" alt=""src="/images/invoice.svg"></img>
+          <h2 id="invoice-header">CREATE INVOICES</h2>
+          <h4>Create new invoices and keep track of all past invoices</h4>
+        </div>
+        <div id="email-section">
+          <h2>NOTIFY CLIENTS</h2>
+          <h4 id="email-tagline">Notify clients of invoices via email and sms</h4>
+          <img id="email-icon"src="/images/email.svg"></img>
+        </div>
+        <div id="chat-section">
+          <span><img id="chat-icon" src="/images/chat.svg"></img></span>
+          <h2 id="live-chat-header">LIVE CHAT WITH CLIENTS</h2>
+          <h4>Live chat with clients to discuss invoice details</h4>
+        </div>
       </div>
       <div ng-show="pay.loggedin == true">
         <div class="btn-group" id="header">
@@ -89,7 +112,9 @@
     <script src="public/recipients/recipients.controller.js"></script>
     <script src="node_modules/angular-cookies/angular-cookies.js"></script>
     <script src="public/paychat/register.controller.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="default.js"</script>
   </body>
 </html>

@@ -1,5 +1,24 @@
 var express = require('express');
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+var usernames = {}
+var userids = []
+
+io.on('connection', function (socket) {
+  socket.on('adduser', function(username) {
+    socket.username = username
+    usernames[username] = username;
+    console.log(usernames)
+    socket.join('room2')
+    socket.emit('updatechat', username)
+    socket.on('chat message', function(msg){
+      io.emit('chat message', msg, socket.username);
+      });
+  })
+});
+
 
 var users = require('./routes/users.js');
 app.use('/users', users);
@@ -63,4 +82,9 @@ app.get('/node_modules/angular-cookies/angular-cookies.js', function(req, res) {
 
 app.use(express.static('./public'))
 
-app.listen(8080)
+
+
+
+
+
+server.listen(8080)
