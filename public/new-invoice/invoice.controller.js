@@ -16,11 +16,23 @@ function paychat ($http) {
 
   }
 
-  vm.createInvoice = function(invoice) {
-
-  console.log(invoice)
-  var create = $http.post('http://localhost:8080/invoices/' + invoice.name + '/' + invoice.id + '/' + invoice.details + '/' + invoice.qty + '/' + invoice.cost + '/' + invoice.total + '/' + invoice.recipient)
+  vm.createInvoice = function(invoice, recipient) {
+  var create = $http.post('http://localhost:8080/invoices/' + vm.name + '/' + invoice.id + '/' + invoice.details + '/' + invoice.qty + '/' + invoice.cost + '/' + invoice.total + '/' + recipient)
   create
   }
 
+  vm.chooseRecipients = function() {
+    var view = $http.get('http://localhost:8080/recipients/').then(function successCallback(response) {
+      vm.contacts = response.data
+    })
+  }
+  vm.chooseRecipients()
+
+  vm.check = function() {
+    var check = $http.get('http://localhost:8080/login/session')
+      .then(function successCallback(response) {
+        vm.name = response.data
+      });
+  }
+  vm.check()
 }
